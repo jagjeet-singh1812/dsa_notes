@@ -1,5 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
+
+// generally array is used for fast retrieval and updation 
+// but has problem i.e time complexity in insertion and deletion process
+
+
 //Adt is abstact data type i.e custom data type which have certain properties or certain defined things of that data type and set of operation to be followed for it.
 //Adt is abstract data types (set of values + set of operation)
 //Adt implementation is as follow :
