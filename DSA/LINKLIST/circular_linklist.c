@@ -34,9 +34,9 @@ do{
 node *insert_at_first_in_circular_linklist(node *head,int insert_element)
 {
     node *ptr=( node* )malloc(sizeof(node));
-    node *q=( node* )malloc(sizeof(node));
-    ptr->data=insert_element;
-    q=head->next;
+    node *q;
+    ptr->data=(insert_element);
+    q=head;
     while(q->next!=head)
     {
       q=ptr->next;
@@ -85,7 +85,7 @@ scanf("%d",&option);
  {
  printf("Enter the data of the element you want to insert at first:\n");
  scanf("%d",&insert_element);
- head=insert_at_first_in_circular_linklist(head,45);
+ head=insert_at_first_in_circular_linklist(head,insert_element);
 traversal_in_circular_linklist(head);
      break;
  }
@@ -97,8 +97,8 @@ traversal_in_circular_linklist(head);
  printf("Enter the index you want to insert the element :  \n");
  scanf("%d",&index);
   //note here index starts from 1 i.e after head i.e it cnt be used to insert at first/ scanf("%d",&index);
- head=insert_at_index(head,insert_element,index);
- linklist_traversal(head);
+//  head=insert_at_index(head,insert_element,index);
+ traversal_in_circular_linklist(head);
      break;
  }
 
