@@ -19,7 +19,7 @@ int isempty(node *top)
         return 0;
 }
 
-int isfull()
+int isfull(node *top)
 {
     node *p = (node *)malloc(sizeof(node));
     if (p == NULL)
@@ -31,20 +31,24 @@ int isfull()
         return 0;
     }
 }
+
+
 void linklist_traversal(node *top)
 {
     int i = 1;
     while (top != NULL)
     {
-        printf("The element at %d node is %d", i, top->data);
+        printf("The element at %d node is %d\n", i, top->data);
         top = top->next;
         i++;
     }
 }
-void push(node *top, int value)
+
+
+node* push(node *top, int value)
 {
 
-    if (isfull() == 1)
+    if (isfull(top) == 1)
     {
         printf("Stack Overflow");
            // if(s==NULL){
@@ -56,12 +60,45 @@ void push(node *top, int value)
         s->data = value;
         s->next = top;
         top = s;
+        return top;
     }
 }
 
-int pop(node **top)
+int peak(node* ptr,int position)
 {
-    if (isempty(*top))
+    node*p;
+    p->next=ptr;
+    int i=1;
+while(i!=position-1)
+{
+    p=p->next;
+    i++;
+}
+return p->data;
+}
+
+int nodetop(node*top)
+{
+    node *p;
+    p=top->next;
+    return p->data;
+}
+
+
+int nodebottom(node* ptr)
+{
+    node*p;
+  p=ptr;
+while(p->next!=NULL)
+{
+    p=p->next;
+}
+return p->data;
+}
+
+int pop(node **top)//or just declare top globally and then change local variables name 
+{
+    if (isempty(top)==1)
     {
         // printf("Stack underflow\n");
         return -1;
@@ -80,11 +117,8 @@ void main()
 {
     int option, rep, n;
     node *top = NULL;
-                        
-    printf("Enter the max size you want into heap/ custom size :-\n");
-    scanf("%d", &(n));
 
-    printf("node has been created successfully\n");
+    printf("stack has been created successfully with\n");
 
     do
     {
@@ -109,19 +143,22 @@ void main()
                 int value;
                 printf("Enter your value to be entered:-\n");
                 scanf("%d", &value);
-                push(top, value);
+             top=push(top, value);
+             printf("%d is Entered to the stack\n");
             }
             break;
         }
         case 2:
         {
-            if (pop(top) == -1)
+            if (pop(&top)==-1)
             {
                 printf("stack underflow\n");
             }
             else
-            {
+            { top++;
                 printf("The %d has been removed from the node\n", pop(&top));
+                // top=pop(&top);
+                // linklist_traversal(top);
             }
             break;
         }
@@ -131,23 +168,24 @@ void main()
             linklist_traversal(top);
             break;
         }
-        // case 4:
-        // { int position;
-        //     printf("Enter your position from top:");
-        //     scanf("%d",&position);
-        //     printf("The value at position %d is %d\n",position,peak(s,position));
-        //     break;
-        // }
-        // case 5:
-        // {
-        //     printf("The node at the top is %d\n",nodetop(top));
-        //     break;
-        // }
-        // case 6:
-        // {
-        //     printf("The node at the bottom is %d\n",nodebottom(top));
-        //     break;
-        // }
+        case 4:
+        { int position;
+            printf("Enter your position from top:");
+            scanf("%d",&position);
+         
+            printf("The value at position %d is %d\n",position,peak(top,position));
+            break;
+        }
+        case 5:
+        {
+            printf("The node at the top is %d\n",nodetop(top));
+            break;
+        }
+        case 6:
+        {
+            printf("The node at the bottom is %d\n",nodebottom(top));
+            break;
+        }
         default:
         {
             printf("wrong option selected...pls enter a valid choice");
