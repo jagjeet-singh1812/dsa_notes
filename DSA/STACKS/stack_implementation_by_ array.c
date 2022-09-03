@@ -8,7 +8,7 @@ typedef struct stack
     int *arr;
 } stack;
 
-int is_empty(stack *ptr)
+int is_empty(stack *ptr)// time complexity is O(1)
 {
     if (ptr->top == -1)
     {
@@ -20,8 +20,9 @@ int is_empty(stack *ptr)
     }
 }
 
-int is_full(stack *ptr)
+int is_full(stack *ptr)// time complexity is O(1)
 {
+    
     if (ptr->top == ptr->size - 1)
     {
         return 1;
@@ -31,11 +32,21 @@ int is_full(stack *ptr)
         return 0; // no need of else case was there its only for understanding purpose
     }
 }
+
+int stacktop(stack *s)
+{
+    return s->arr[s->top];
+}
+
+int stackbottom(stack *s)
+{
+    return s->arr[0];
+}
 //array index= top-i+1;
 //note here position starts from 1 from the top
-int peak(stack *ptr, int position)
+int peak(stack *ptr, int position)// time complexity is O(1)
 {
-int array_index=ptr->top-position+1;
+int array_index=ptr->top  - position+ 1;
 if(array_index<0)
 {
     return -1;
@@ -45,26 +56,40 @@ else
     return ptr->arr[array_index];
 }
 }
+
 // you can only pop at top=>0 and pop cant at top=-1
-int pop(stack *ptr)
+// int pop(stack *ptr)// time complexity is O(1)
+// {
+//     if (is_empty(ptr))
+//     {
+//         // printf("Stack underflow\n");
+//          // is empty top=-1
+//         return -1;
+//     }
+//     else
+//     {
+//         int val=ptr->arr[ptr->top];
+//         // ptr->top = ptr->top-1; 
+//         //  also can do
+//         ptr->top--;
+//         return val;
+//     }
+// }
+
+int pop(stack *s)
 {
-    if (is_empty(ptr))
+    if(is_empty(s))
     {
-        // printf("Stack underflow\n");
-         // is empty top=-1
         return -1;
     }
     else
     {
-        int val = ptr->arr[ptr->top];
-        // ptr->top = ptr->top-1; 
-        //  also can do 
-        ptr->top-=1;
-        return val;
+        int value=s->arr[s->top];
+        s->top--;
+        return value;
     }
 }
-
-void push(stack *ptr, int value)
+void push(stack *ptr, int value)// time complexity is O(1)
 {
     if (is_full(ptr))
     {
@@ -72,7 +97,7 @@ void push(stack *ptr, int value)
     }
     else
     {
-        ptr->top+=1;
+        ptr->top++;
         ptr->arr[ptr->top] = value;
         printf("THE %d has been added to stack\n", value);
     }
@@ -102,6 +127,9 @@ do{
     printf("Enter 1 for pushing in stack\n");
     printf("Enter 2 for poping in stack\n");
     printf("Enter 3 for displaying the stack\n");
+    printf("Enter 4 for peaking the stack\n");
+    printf("Enter 5 for stack at top\n");
+    printf("Enter 6 for stack at bottom\n");
     printf("Enter your desired option:-\n");
     scanf("%d", &option);
 
@@ -129,6 +157,7 @@ do{
     }
     else
     {
+        s->top+=1;
         printf("The %d has been removed from the stack\n",pop(s));
     }
         break;
@@ -139,6 +168,23 @@ do{
        {
         printf("The value at position %d is %d\n",i,peak(s,i));
        }
+        break;
+    }
+    case 4:
+    { int position;
+        printf("Enter your position from top:");
+        scanf("%d",&position);
+        printf("The value at position %d is %d\n",position,peak(s,position));
+        break;
+    }
+    case 5:
+    { 
+        printf("The stack at the top is %d\n",stacktop(s));
+        break;
+    }
+    case 6:
+    { 
+        printf("The stack at the bottom is %d\n",stackbottom(s));
         break;
     }
     default:
