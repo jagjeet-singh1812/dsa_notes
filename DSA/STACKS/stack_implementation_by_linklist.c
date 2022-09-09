@@ -16,13 +16,13 @@ int isempty(node *top)
     if (top == NULL)
         return 1;
     else
-        return 0;
+        return 0;// no need of else was there
 }
 
 int isfull(node *top)
 {
     node *p = (node *)malloc(sizeof(node));
-    if (p == NULL)
+    if (p == NULL)//note malloc only return null when memory allocation cannot be done..
     {
         return 1; // means dynamically memory cant be allocated only if all heap memory is exhausted so p==null
     }
@@ -48,11 +48,10 @@ void linklist_traversal(node *top)
 node* push(node *top, int value)
 {
 
-    if (isfull(top) == 1)
+    if (isfull(top))
     {
         printf("Stack Overflow");
-           // if(s==NULL){
-    //     printf("Stack Overflow");
+        
     }
     else
     {
@@ -64,10 +63,10 @@ node* push(node *top, int value)
     }
 }
 
-int peak(node* ptr,int position)
+int peak(node* top,int position)
 {
-    node*p;
-    p->next=ptr;
+    node*p=(node *)malloc(sizeof(node));
+    p->next=top;
     int i=1;
 while(i!=position-1)
 {
@@ -87,7 +86,7 @@ int nodetop(node*top)
 
 int nodebottom(node* ptr)
 {
-    node*p;
+node*p;
   p=ptr;
 while(p->next!=NULL)
 {
@@ -98,7 +97,7 @@ return p->data;
 
 int pop(node **top)//or just declare top globally and then change local variables name 
 {
-    if (isempty(top)==1)
+    if (isempty(top))
     {
         // printf("Stack underflow\n");
         return -1;
@@ -115,7 +114,7 @@ int pop(node **top)//or just declare top globally and then change local variable
 
 void main()
 {
-    int option, rep, n;
+    int option, rep;
     node *top = NULL;
 
     printf("stack has been created successfully with\n");
@@ -126,6 +125,7 @@ void main()
         printf("Enter 2 for poping in node\n");
         printf("Enter 3 for displaying the node\n");
         printf("Enter 4 for peaking the node\n");
+
         printf("Enter 5 for node at top\n");
         printf("Enter 6 for node at bottom\n");
         printf("Enter your desired option:-\n");
@@ -155,11 +155,8 @@ void main()
                 printf("stack underflow\n");
             }
             else
-            { top++;
+            {
                 printf("The %d has been removed from the node\n", pop(&top));
-                // top=pop(&top);
-                // linklist_traversal(top);
-            }
             break;
         }
 
@@ -191,8 +188,9 @@ void main()
             printf("wrong option selected...pls enter a valid choice");
         }
         }
+    }
         printf("Do you want to continue:(enter 1 for yes and 0 for no)\n");
         scanf("%d", &rep);
         printf("\n");
     } while (rep != 0);
-}
+    }
