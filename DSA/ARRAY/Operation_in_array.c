@@ -75,7 +75,7 @@ int binarysearch(int arr[1000],int n,int search_element)
             return mid;
         }
 
-        if(arr[mid]<search_element)
+        else if(arr[mid]<search_element)
         {
             low=mid+1;
         }

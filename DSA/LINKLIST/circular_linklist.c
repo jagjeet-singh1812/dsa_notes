@@ -7,6 +7,7 @@ typedef struct node1
     struct node1 *next;
 } node;
 
+node * start=NULL;
 
 void traversal_in_circular_linklist(node *head)
 {
@@ -52,25 +53,27 @@ void main()
 {
 
 int option,insert_element,index;
-    node *head = (node *)malloc(sizeof(node));
-    node *second = (node *)malloc(sizeof(node));
-    node *third = (node *)malloc(sizeof(node));
-    node *fourth = (node *)malloc(sizeof(node));
+//     node *head = (node *)malloc(sizeof(node));
+//     node *second = (node *)malloc(sizeof(node));
+//     node *third = (node *)malloc(sizeof(node));
+//     node *fourth = (node *)malloc(sizeof(node));
 
-    head->data = 10;
-    head->next = second;
+//     head->data = 10;
+//     head->next = second;
 
-    second->data = 12;
-    second->next = third;
+//     second->data = 12;
+//     second->next = third;
 
-    third->data = 14;
-    third->next = fourth;
+//     third->data = 14;
+//     third->next = fourth;
 
-    fourth->data = 16;
-    fourth->next = head;//this is main step in circular linklist
-printf("The elements of circular linklist are:-\n");
-traversal_in_circular_linklist(head);
+//     fourth->data = 16;
+//     fourth->next = head;//this is main step in circular linklist
+// printf("The elements of circular linklist are:-\n");
+// traversal_in_circular_linklist(head);
 
+printf("Enter 1 to create a circular linklist:\n");
+printf("Enter 2 for display:\n");
 printf("Enter 1 for insertion at start/beginning of an linklist:\n");
 printf("Enter 2 for insertion at any index of an linklist:\n");
 printf("Enter 3 for insertion at end of an linklist:\n");

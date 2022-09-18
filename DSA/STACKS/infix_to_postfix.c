@@ -109,13 +109,8 @@ char* infixToPostfix(char* infix){
 }
 int main()
 {
-    // int n;
-    // printf("Enter the length of the infix expression:-  \n");
-    // scanf("%d",&n);
-    // char infix;
-    // printf("enter your infix expression:-\n");
-    // scanf("%c",&infix);
-    char * infix = "a-b*c";
+   
+    char * infix = "b+c*a+d*e";
     printf("postfix is %s", infixToPostfix(infix));
     return 0;
 }
