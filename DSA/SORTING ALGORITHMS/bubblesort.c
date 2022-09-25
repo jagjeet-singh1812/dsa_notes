@@ -20,7 +20,7 @@ void bubble_sort(int *a[],int n)
 int is_sorted=0;
   for(int i=0;i<n;i++){// for number of passes
   is_sorted=1;
-  printf("\nWORKING ON PASS NO. %d\n",i+1);
+//   printf("\nWORKING ON PASS NO. %d\n",i+1);
   for(int j=0;j<n-1-i;j++){// for comparison
      if(a[j+1]<a[j]) // for ascending order
      {
