@@ -13,7 +13,7 @@ typedef struct circularqueue
 
 int isempty(queue *q)
 {
-  if (q->rear==q->rear)
+  if (q->rear==q->front==-1)
   {
     return 1;
   }
@@ -36,6 +36,12 @@ void enqueue(queue *q, int val)
   {
     printf("CIRCULAR QUEUE OVERFLOW\n");
   }
+  else if(isempty(q))
+  {
+       q->front=q->rear=0;
+       q->arr[q->rear]=val;
+    printf("THE VALUE %d HAS BEEN ENTERED AS THEFIRST ELEMENT OF THE QUEUE\n", val);
+  }
   else
   {
     q->rear=(q->rear+1)%(q->size);
@@ -51,6 +57,9 @@ int dequeue(queue *q)
   {
     printf("UNDERFLOW CIRCULAR QUEUE\n");
     a = -1;
+  }
+  else if(q->rear==q->front){
+  q->front=q->rear;
   }
   else
   {
@@ -81,7 +90,7 @@ void getfront(queue *q)
 
   else
   {
-    printf("FRONT VALUE: %d\n", q->arr[q->front+1]);
+    printf("FRONT VALUE: %d\n", q->arr[q->front]);
   }
 }
 
@@ -93,10 +102,15 @@ void display(queue *q)
   }
   else
   {
+    int i=q->front;
     printf("ELEMENTS ARE:");
-    for (int i=q->front+1; i <=q->rear; i++)
-    {
-      printf("%d ", q->arr[i]);
+    // for (int i=q->front; i <=q->rear; (i+1)q->size)
+    // {
+    //   printf("%d ", q->arr[i]);
+    // }
+    while(i!=q->rear){
+      printf("%d ",q->arr[i]);
+      i=(i+1)/q->size;
     }
   }
 }

@@ -4,6 +4,8 @@
 // its can be implemented using array,linklist as well as stacks and other adts also
 // enqueue is o(1) and dequeue is o(n)time complexity
 //  first elemnt is at rear+1 and last is front
+//here problem is its not efficient its inperspective of space complexity
+//here problem  is also static memory allocation due to array used 
 typedef struct queue
 {
   int size;
