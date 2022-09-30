@@ -59,7 +59,7 @@ int dequeue(queue *q)
     a = -1;
   }
   else if(q->rear==q->front){
-  q->front=q->rear;
+  q->front=q->rear=-1;
   }
   else
   {
