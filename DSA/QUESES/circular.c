@@ -40,7 +40,7 @@ void enqueue(queue *q, int val)
   {
        q->front=q->rear=0;
        q->arr[q->rear]=val;
-    printf("THE VALUE %d HAS BEEN ENTERED AS THEFIRST ELEMENT OF THE QUEUE\n", val);
+    printf("THE VALUE %d HAS BEEN ENTERED AS THE FIRST ELEMENT OF THE QUEUE\n", val);
   }
   else
   {
@@ -58,7 +58,7 @@ int dequeue(queue *q)
     printf("UNDERFLOW CIRCULAR QUEUE\n");
     a = -1;
   }
-  else if(q->rear==q->front){
+  else if(q->rear==q->size){
   q->front=q->rear;
   }
   else

@@ -6,6 +6,7 @@
 //  first elemnt is at rear+1 and last is front
 //here problem is its not efficient its inperspective of space complexity
 //here problem  is also static memory allocation due to array used 
+// we can also implement it with help of linklist and stacks 
 typedef struct queue
 {
   int size;
