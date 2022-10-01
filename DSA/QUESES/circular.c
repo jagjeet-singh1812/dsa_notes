@@ -58,8 +58,9 @@ int dequeue(queue *q)
     printf("UNDERFLOW CIRCULAR QUEUE\n");
     a = -1;
   }
-  else if(q->rear==q->size){
-  q->front=q->rear;
+
+  else if(q->rear==q->front){
+  q->front=q->rear=-1;
   }
   else
   {
