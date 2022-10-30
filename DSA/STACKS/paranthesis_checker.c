@@ -62,7 +62,7 @@ void push(stack *ptr, char value) // time complexity is O(1)
     }
 }
 
-int paranthesismatcher(char *exp, int length)
+int paranthesismatcher(char *exp[], int length)
 {
     stack *sp = malloc(sizeof(stack));
     sp->size = length;
@@ -75,7 +75,7 @@ int paranthesismatcher(char *exp, int length)
         {
             push(sp, exp[i]);
         }
-        else if (exp[i] == '(' || exp[i] == '{' || exp[i] == '[')
+        else if (exp[i] == ')' || exp[i] == '}' || exp[i] == ']')
         {
             if (is_empty(sp))
                 return 0;
@@ -94,7 +94,7 @@ int paranthesismatcher(char *exp, int length)
 
 void main()
 {
-    char *expression;
+    char *expression[100];
     printf("ENTER YOUR EXPRESSION:-\n");
     scanf("%s", expression);
     if (paranthesismatcher(&expression, strlen(expression)))

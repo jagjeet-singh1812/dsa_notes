@@ -119,14 +119,13 @@ struct node *create_li(struct node *head)
             printf("\n Enter the data: ");
             scanf("%d", &num);
         }
-        return head;
     }
+        return head;
 }
 
 struct node *display(struct node *head)
 {
     struct node *ptr;
-    // ptr=s
     if (head == NULL)
     {
         printf("List is empty");
@@ -140,7 +139,6 @@ struct node *display(struct node *head)
             ptr = ptr->next;
         }
     }
-    return head;
 }
 
 struct node *insert_beg(struct node *head)

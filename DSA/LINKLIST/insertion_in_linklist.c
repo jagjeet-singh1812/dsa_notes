@@ -34,6 +34,54 @@ node * insert_at_first(node *head,int insert_element)
 
 
 
+node *creatli(node * head){
+    node * ptr=NULL;
+    int val,num;
+    printf("ENTER THE NUMBER OF NODES YOU NWANT TO ENTER :-");
+    scanf("%d",&num);
+    for(int i=0;i<num;i++){
+    printf("ENTER THE VALUE YOU WANT TO INSERT :-");
+    scanf("%d",&val);
+    ptr= (node *)malloc(sizeof(node));
+ptr->data=val;
+if(head==NULL){
+    ptr->next=NULL;
+    head=ptr;
+}
+else{
+    node *p= (node*)malloc(sizeof(node*));
+    p=head;
+    while(p->next!=NULL) 
+    {
+        p=p->next;
+    }
+    p->next=ptr;
+    ptr->next= NULL;
+}
+
+}
+return head;
+}
+
+int numberofnodes(node * head)
+{    
+    int count =1;
+    if(head==NULL){
+        return 0;
+    }
+    else if(head->next==NULL){
+        return 1;
+    }
+    else{
+        node *ptr;
+        ptr= head;
+        while(ptr->next!= NULL){
+           ptr=ptr->next;
+           count++;
+        }
+        return count;
+    }
+}
 
 
 node * insert_at_end(node *head,int insert_element)
@@ -81,40 +129,46 @@ return head;
 
 void main()
 {
+
+    node *head=NULL;
+    head=creatli(head);
+    linklist_traversal(head);
+
 int insert_element,option,index;
- node *head;
-  node *second;
-  node *third;
-  node *fourth;
+//  node *head;
+//   node *second;
+//   node *third;
+//   node *fourth;
 
-  head=(node *)malloc(sizeof(node));
-  second=(node *)malloc(sizeof(node));
-  third=(node *)malloc(sizeof(node));
-  fourth=(node *)malloc(sizeof(node));
+//   head=(node *)malloc(sizeof(node));
+//   second=(node *)malloc(sizeof(node));
+//   third=(node *)malloc(sizeof(node));
+//   fourth=(node *)malloc(sizeof(node));
 
-//linking first node to second
-head->data=12;
-head->next=second;
+// //linking first node to second
+// head->data=12;
+// head->next=second;
 
-//linking second node to third
-second->data=13;
-second->next=third;
+// //linking second node to third
+// second->data=13;
+// second->next=third;
 
-//linking third node to fourth 
-third->data=14;
-third->next=fourth;
+// //linking third node to fourth 
+// third->data=14;
+// third->next=fourth;
 
-//linking fourth node to NULL i.e terminating the list
-fourth->data=15;
-fourth->next=NULL;
+// //linking fourth node to NULL i.e terminating the list
+// fourth->data=15;
+// fourth->next=NULL;
 
-printf("The present linklist is:\n");
-linklist_traversal(head);
+// printf("The present linklist is:\n");
+// linklist_traversal(head);
 
 printf("Enter 1 for insertion at start/beginning of an linklist:\n");
 printf("Enter 2 for insertion at any index of an linklist:\n");
 printf("Enter 3 for insertion at end of an linklist:\n");
 printf("Enter 4 for insertion at given node of an linklist:\n");
+printf("Enter 5 for number of nodes:\n");
 printf("Enter the option you want to select:\n");
 scanf("%d",&option);
 switch (option)
@@ -154,15 +208,20 @@ case 4:
 
    printf("Enter the data of the element you want to insert in between i.e by index :  \n");
    scanf("%d",&insert_element);
-   head=insert_at_given_node(head,insert_element,third);// note here third is node after which insertion to take place
+   head=insert_at_given_node(head,insert_element,head);// note here third is node after which insertion to take place
    linklist_traversal(head);
+}
+
+case 5:
+{ 
+printf("THE NUMBER OF NODES ARE :- %d",numberofnodes(head));
 }
 default:
     break;
 }
 
-free(head);
-free(second);
-free(third);
-free(fourth);
+// free(head);
+// free(second);
+// free(third);
+// free(fourth);
 }

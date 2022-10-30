@@ -9,6 +9,7 @@ typedef struct node
     struct node *next;
 } node;
   
+  
 
 
 int isempty(node *top)
@@ -122,6 +123,8 @@ void main()
     do
     {
         printf("Enter 1 for pushing in node\n");
+
+   
         printf("Enter 2 for poping in node\n");
         printf("Enter 3 for displaying the node\n");
         printf("Enter 4 for peaking the node\n");

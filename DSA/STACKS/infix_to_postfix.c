@@ -59,16 +59,18 @@ char pop(struct stack* ptr){
     }
 }
 int precedence(char ch){
-    if(ch == '*' || ch=='/')
+    if(ch == '^')
         return 3;
+    if(ch == '*' || ch=='/')
+        return 2;
     else if(ch == '+' || ch=='-')
-        return 2; 
+        return 1; 
     else
         return 0;
 }
  
 int isOperator(char ch){
-    if(ch=='+' || ch=='-' ||ch=='*' || ch=='/') 
+    if(ch=='+' || ch=='-' ||ch=='*' || ch=='/'|| ch=='^') 
         return 1;
     else
         return 0;
@@ -110,7 +112,8 @@ char* infixToPostfix(char* infix){
 int main()
 {
    
-    char * infix = "b+c*a+d*e";
+    char *infix[100] ;
+    gets(infix);
     printf("postfix is %s", infixToPostfix(infix));
     return 0;
 }
