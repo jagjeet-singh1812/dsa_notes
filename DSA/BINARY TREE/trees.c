@@ -54,7 +54,9 @@ void *ASSIGNATION(tree *root, tree *l, tree *r)
   root->right = r;
 }
 
-// tree* insertion(int val, tree *root)
+
+
+// tree* deletion(int val, tree *root)
 // {
 //   tree *prev = NULL;
 //   if (root == NULL)
@@ -132,6 +134,12 @@ tree *inOrderPredecessor(tree *root)
   return root;
 }
 
+tree * inordersuccessor(tree * root){
+
+
+
+}
+
 struct node *deleteNode(struct node *root, int value)
 {
   struct node *iPre=NULL;
@@ -140,11 +148,11 @@ struct node *deleteNode(struct node *root, int value)
   {
     return NULL;
   }
-  if (root->left == NULL && root->right == NULL)
-  {
-    free(root);
-    return NULL;
-  }
+  // if (root->left == NULL && root->right == NULL)
+  // {
+  //   free(root);
+  //   return NULL;
+  // }
 
   // searching for the node to be deleted
   if (value < root->data)
@@ -156,13 +164,42 @@ struct node *deleteNode(struct node *root, int value)
     root->right=deleteNode(root->right, value);
   }
   // deletion strategy when the node is found
-  else
-  {
-    iPre = inOrderPredecessor(root);
-    root->data = iPre->data;
-    deleteNode(root->left, iPre->data);
+//   else
+//   {
+
+//     // iPre = inOrderPredecessor(root);
+//     // root->data = iPre->data;
+//     // deleteNode(root->left, iPre->data);
+// }
+
+ else
+        {
+            if (root->left == NULL){
+                  free(root);
+            return root->right;
+        }
+
+        else if (root->right == NULL){
+        free(root);
+            return root->left;
+            }
+
+            // finding the minimum succesor
+            int minv;
+            tree *ptr = root->right;
+            while (ptr != NULL)
+            {
+                minv = ptr->data;
+                ptr = ptr->left;
+            }
+            root->data = minv;
+
+            // callig to node_delete that node so that it will replaced from the original deleting node
+            root->right = deleteNode(root->right, minv);
+        }
+
   }
-}
+
 
 void preorder(tree *root)
 {
@@ -196,6 +233,36 @@ void inorder(tree *root)
   }
 }
 
+int nodenumber(tree * root){// total nodes
+  if(root==NULL){
+     return 0;
+  }
+  else {
+   return  nodenumber(root->left)+nodenumber(root->right)+1;
+  }
+}
+
+int internalnode(tree* root){
+  if(root==NULL|| ((root->left==NULL) && (root->right==NULL))){
+    return 0;
+  }
+  else{
+       return  (internalnode(root->left)+internalnode(root->right)+1);
+  }
+   return nodenumber(root)-leafnode(root);
+}
+
+int leafnode(tree * root){// also external nodes
+  if(root== NULL){
+    return 0;
+  }
+  else if(root->left==NULL && root->right==NULL){
+    return 1;
+  }
+  else{
+    return leafnode(root->left)+leafnode(root->right);
+  }
+}
 // Here tree is
 //           4
 //         /   \
@@ -227,6 +294,9 @@ void main()
     printf("ENTER 3 FOR POSTORDER TRAVERSAL:-\n");
     printf("ENTER 4 FOR INSERING ELEMENT:-\n");
     printf("ENTER 5 FOR DELETION ELEMENT:-\n");
+    printf("ENTER 6 for total nodes\n");
+    printf("ENTER 7 for total internal nodes\n");
+    printf("ENTER 8 for leaf nodes\n");
 
     printf("ENTER YOUR OPTION:-\n");
     scanf("%d", &option);
@@ -268,11 +338,21 @@ void main()
       inorder(root);
       break;
 
+    case 6:
+    printf("THE TOTAL NUMBER OF NODES ARE: %d",nodenumber(root));
+     break;
+    case 7:
+    printf("THE TOTAL NUMBER OF NODES ARE: %d",internalnode(root));
+     break;
+    case 8:
+    printf("THE TOTAL NUMBER OF NODES ARE: %d",leafnode(root));
+     break;
+
     default:
       printf("WRONG OPTION SELECTION\n");
       break;
     }
-    printf("do you want to continue:(if no then press 0 else 1)\n");
+    printf("\ndo you want to continue:(if no then press 0 else 1)\n");
     scanf("%d", &choice);
   } while (choice != 0);
 }
