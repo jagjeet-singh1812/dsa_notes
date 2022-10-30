@@ -43,7 +43,7 @@ void enqueue(queue *q, int val)
     q->rear++;
 
     q->arr[q->rear] = val;
-    printf("THE VALUE %d HAS BEEN ENTERED TO THE QUEUE\n", val);
+    // printf("THE VALUE %d HAS BEEN ENTERED TO THE QUEUE\n", val);
   }
 }
 
@@ -84,7 +84,7 @@ void display(queue *q)
 
 void main()
 {
-  int n, option, z;
+  int n;
   queue q;
   printf("ENTER THE MAX SIZE OF QUEUE YOU WANT:\n");
   scanf("%d", &n);
@@ -92,8 +92,39 @@ void main()
   q.size = n;
   q.front = q.rear = -1;
   q.arr = (int *)malloc(q.size * sizeof(int));
-  printf("YOUR QUEUE IS+ CREATED\n");
+  printf("YOUR QUEUE Is CREATED\n");
 //   
+
+    // BFS Implementation 
+    int node;
+    int i = 1;
+    int visited[7] = {0,0,0,0,0,0,0};
+    int a [7][7] = {
+        {0,1,1,1,0,0,0},
+        {1,0,1,0,0,0,0},
+        {1,1,0,1,1,0,0},
+        {1,0,1,0,1,0,0},
+        {0,0,1,1,0,1,1},
+        {0,0,0,0,1,0,0}, 
+        {0,0,0,0,1,0,0} 
+    };
+    printf("%d", i);
+    visited[i] = 1;
+    enqueue(&q, i); // Enqueue i for exploration
+    while (!isempty(&q))
+    {
+        int node = dequeue(&q);
+        for (int j = 0; j < 7; j++)
+        {
+            if(a[node][j] ==1 && visited[j] == 0){
+                printf("%d", j);
+                visited[j] = 1;
+                enqueue(&q, j);
+            }
+        }
+    }
+
+
 
 
 }
