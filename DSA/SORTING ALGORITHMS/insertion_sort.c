@@ -1,4 +1,4 @@
-
+#include<stdio.h>
 // its worst case time complexity is O{n^2} and O{n}in best case senario
 //  its stable sa
 //  its adaptive
@@ -6,11 +6,12 @@
 void insertion_sort(int *a[], int n) // sorts in ascendind order
 {
     int key, j;
-    for (int i = 1; i <= n - 1; i++) // loop for passes
+    for (int i = 1; i <= n - 1; i++) // loop for passes 
+    //total possible swap/passes is n(n-1)/2 and total passes are (n-1) ,here n= no.of array elements
     {
         key = a[i];
         j = i - 1;
-        while (j >= 0 && a[j] > key)
+        while (j >= 0 && a[j] < key)// for ascending order or for descending order a[j]<key
         {
             a[j + 1] = a[j];
             j--;

@@ -65,7 +65,7 @@ int precedence(char ch){
         return 2;
     else if(ch == '+' || ch=='-')
         return 1; 
-    else
+    else if(ch=='(')
         return 0;
 }
  

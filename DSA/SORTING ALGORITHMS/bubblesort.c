@@ -28,9 +28,9 @@ int is_sorted=0;
       a[j]=a[j+1];
       a[j+1]=temp;
 // also can swap by this way
-    //   a[j]=a[j] + a[j+1];
-    //   a[j+1]=a[j]-a[j+1];
-    //   a[j]=a[j]-a[j+1];
+    //   a[j]=a[j] + a[j+1]; // a= a+b
+    //   a[j+1]=a[j]-a[j+1]; // b= a-b =  a+b-b = a 
+    //   a[j]=a[j]-a[j+1];   //  a= a-b = a+b-a = b
      }
   }
      if(is_sorted) return;
