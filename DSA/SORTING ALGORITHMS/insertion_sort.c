@@ -1,23 +1,46 @@
 #include<stdio.h>
-// its worst case time complexity is O{n^2} and O{n}in best case senario
-//  its stable sa
-//  its adaptive
-// intermediate result is not useful at all they are just random number of element sorted
-void insertion_sort(int *a[], int n) // sorts in ascendind order
+#include<stdlib.h>
+//divide and conquer rule is used 
+void merge(int a[], int low,int mid,int high) // sorts in ascendind order
 {
-    int key, j;
-    for (int i = 1; i <= n - 1; i++) // loop for passes 
-    //total possible swap/passes is n(n-1)/2 and total passes are (n-1) ,here n= no.of array elements
-    {
-        key = a[i];
-        j = i - 1;
-        while (j >= 0 && a[j] < key)// for ascending order or for descending order a[j]<key
-        {
-            a[j + 1] = a[j];
-            j--;
-        }
-        a[j + 1] = key;
-    }
+    //int n= sizeof(a)/sizeof(a[0]);
+    int i,j,k,b[100],
+    //int* b=(int *)malloc(n*sizeof(int));
+   i=low;
+   j= mid+1;
+k=low;
+
+while(i<=mid && j<=high){
+if(a[i]<a[j]){
+    b[k]=a[i];
+    i++;
+    k++;
+}
+if(a[i]>a[j]){
+    b[k]=a[j];
+    j++;
+    k++;
+}
+
+while (i<=mid)// for copying remaining element in the array
+{
+    b[k]=a[i];
+    i++;
+    k++;
+}
+
+while(j<=high)// for copying remaining element in the array
+{
+    b[k]=a[j];
+    j++;
+    k++;
+}
+
+for(int i=low;i<=high;i++)// for copying the elements of array b in a 
+{
+a[i]=b[i];
+}
+}
 }
 void print_array(int a[], int n)
 {
@@ -26,6 +49,17 @@ void print_array(int a[], int n)
         printf("%d\t", a[i]);
     }
 }
+
+void merge_sort(int a[],int low,int high){
+    int mid;
+    if(low<high){
+        mid= (low+high)/2;
+        merge_sort(a,low,mid);
+        merge_sort(a,mid+1,high);
+        merge(a,low,mid,high);
+    }
+}
+
 
 void main()
 {
@@ -38,7 +72,7 @@ void main()
         scanf("%d", &array[i]);
     printf("THE ARRAY IS :-\n");
     print_array(array, n);
-    insertion_sort(array, n);
+    merge_sort(array, 0,n-1);
     printf("\nARRAY AFTER SORTING IS:\n");
     print_array(array, n);
 }
