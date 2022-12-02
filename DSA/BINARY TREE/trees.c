@@ -148,11 +148,11 @@ struct node *deleteNode(struct node *root, int value)
   {
     return NULL;
   }
-  // if (root->left == NULL && root->right == NULL)
-  // {
-  //   free(root);
-  //   return NULL;
-  // }
+  if (root->left == NULL && root->right == NULL)
+  {
+    free(root);
+    return NULL;
+  }
 
   // searching for the node to be deleted
   if (value < root->data)
@@ -163,40 +163,40 @@ struct node *deleteNode(struct node *root, int value)
   {
     root->right=deleteNode(root->right, value);
   }
-  // deletion strategy when the node is found
-//   else
-//   {
+  //deletion strategy when the node is found
+  else
+  {
 
-//     // iPre = inOrderPredecessor(root);
-//     // root->data = iPre->data;
-//     // deleteNode(root->left, iPre->data);
-// }
+    iPre = inOrderPredecessor(root);
+    root->data = iPre->data;
+    deleteNode(root->left, iPre->data);
+}
 
- else
-        {
-            if (root->left == NULL){
-                  free(root);
-            return root->right;
-        }
+//  else
+//         {
+//             if (root->left == NULL){
+//                   free(root);
+//             return root->right;
+//         }
 
-        else if (root->right == NULL){
-        free(root);
-            return root->left;
-            }
+//         else if (root->right == NULL){
+//         free(root);
+//             return root->left;
+//             }
 
-            // finding the minimum succesor
-            int minv;
-            tree *ptr = root->right;
-            while (ptr != NULL)
-            {
-                minv = ptr->data;
-                ptr = ptr->left;
-            }
-            root->data = minv;
+//             // finding the minimum succesor
+//             int minv;
+//             tree *ptr = root->right;
+//             while (ptr != NULL)
+//             {
+//                 minv = ptr->data;
+//                 ptr = ptr->left;
+//             }
+//             root->data = minv;
 
-            // callig to node_delete that node so that it will replaced from the original deleting node
-            root->right = deleteNode(root->right, minv);
-        }
+//             // callig to node_delete that node so that it will replaced from the original deleting node
+//             root->right = deleteNode(root->right, minv);
+//         }
 
   }
 
@@ -266,9 +266,9 @@ int leafnode(tree * root){// also external nodes
 // Here tree is
 //           4
 //         /   \
-//       1       6
+//       2      6
 //     /   \
-//   2       3
+//   1      3
 
 void main()
 {
@@ -283,8 +283,8 @@ void main()
   // p1->right=p2;
   // root->right=p4;
 
-  ASSIGNATION(root, p1, p4);
-  ASSIGNATION(p1, p3, p2);
+  ASSIGNATION(root, p3, p4);
+  ASSIGNATION(p3, p1, p2);
 
   do
   {

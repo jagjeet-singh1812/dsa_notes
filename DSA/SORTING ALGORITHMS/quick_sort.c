@@ -44,7 +44,7 @@ void quick_sort(int *a[], int low, int high)
     if (low < high)
     {
         partionindex = partion(a, low, high);
-        quick_sort(a, low, partionindex - 1);y
+        quick_sort(a, low, partionindex - 1);
         quick_sort(a, partionindex + 1, high);
     }
 }
